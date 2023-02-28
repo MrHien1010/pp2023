@@ -10,5 +10,5 @@ Student Info
 =========================
 
 * Student Name: VU MINH HIEN 
-* Student ID: BI12-154
+* Student ID: BI12-154 CS
 
