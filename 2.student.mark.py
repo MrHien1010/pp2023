@@ -9,10 +9,12 @@ class input_students:
         return f"{self.id_students} {self.name} {self.dob}"
 
     def add_student(self):
-        students2 = {'id': self.id_students, 'Name': self.name, 'Dob': self.dob}
-        student_id_list.append(students2['id'])
+        students_2 = {'Student Id': self.id_students, 'Student Name': self.name, 'Student Dob': self.dob}
+        student_id_list.append(students_2['Student Id'])
 
-        students1.append(students2)
+        students1.append(students_2)
+        print(students1)
+        print(student_id_list)
 
 
 student_id_list = []
@@ -20,7 +22,6 @@ course_id_list = []
 mark_course = []
 marks1 = []
 marks2 = {}
-
 course2 = {}
 course1 = []
 students1 = []
@@ -30,7 +31,8 @@ students2 = {}
 def print_student_list():
     print("List of students:")
     for i in range(len(students1)):
-        print(f"{i + 1} " + students1[i])
+        print(f"{i + 1} ")
+        print(students1[i])
 
 
 class input_number_student:
@@ -48,56 +50,59 @@ class input_courses:
         return f"{self.id_course} {self.name} "
 
     def add_course(self):
-        course2 = {'id': self.id_course, 'Name': self.name}
-        course_id_list.append(course2['id'])
-        course1.append(course2)
+        course_2 = {'Course id': self.id_course, 'Course Name': self.name}
+        course_id_list.append(course_2['Course id'])
+        course1.append(course_2)
+        print(course1)
+        print(course_id_list)
 
 
 def print_course_list():
     print("List of course:")
     for i in range(len(course1)):
-        print(f"{i + 1} " + course1[i])
+        print(f"{i + 1} ")
+        print(course1[i])
 
 
 class input_number_course:
-    def __init__(self, n3):
-        self.n3 = n3
+    def __init__(self, n2):
+        self.n3 = n2
 
 
-class Mark(input_students):
-    def __init__(self, id_student, name_student, dob_student):
-        super().__init__(id_student, name_student, dob_student)
-        self.mark = mark
-
-    def input_mark(self):
-        marks2 = {'Id course': self.id_course, 'Id student': self.id_students, 'Mark': self.mark}
-        marks1.append(marks2)
-
-
-def input_marks(studentid, courseid, mark):
+def input_marks(course_id_1, student_id_1, marks):
     for course in course_id_list:
-        if courseid == course_id_list[course]:
-            for student in student_id_list:
-                if studentid == student_id_list[student]:
-                    marks2 = {'Course Id': studentid, 'Student Id': courseid, 'Mark': mark}
-                    mark_course.append(marks2['Course Id'])
-                    marks1.append(marks2)
 
+        if course_id_1 == course:
+            for student in student_id_list:
+                if student_id_1 == student:
+                    marks_2 = {'Course Id': course_id_1, 'Student Id': student_id_1, 'Mark': marks}
+                    mark_course.append(marks_2['Course Id'])
+                    marks1.append(marks_2)
+                    print(marks1)
+                    print(mark_course)
                     print("Mark added successfully!")
                     return
-            print("Wrong student ID, Please try again.")
+        #         else:
+        #             print("Wrong student ID, Please try again.")
+        #             return
+        # else:
+        #     print("Wrong course ID, Please try again.")
+        #     return
+
+
+def list_cr_marks(course_id_2):
+    for course in mark_course:
+        if course_id_2 == course:
+            print(f"Marks for course {course_id_2}:")
+            print(marks1)
+
             return
-        print("Wrong course ID, Please try again.")
-        return
-
-
-def list_cr_marks():
-    cid = input("Enter course id: ")
-    for i in marks1:
-        if i[1] == cid:
-            for index, item in enumerate(students1):
-                print(index, item)
-                print("Student's mark:", i[2])
+    #     else:
+    #         print("Wrong ID, Please try again.")
+    #         return
+    # else:
+    #     print("Wrong ID, Please try again.")
+    #     return
 
 
 while True:
@@ -110,43 +115,39 @@ while True:
     option = int(input())
     if option == 1:
         n1 = input_number_student(int(input("Input number of students in a class: ")))
-
     if option == 2:
         n4 = input_number_course(int(input("Input number of course: ")))
-
     if option == 3:
-        n1 = int(input("Input number of students to input:"))
-        for n in range(n1):
+        n3 = int(input("Input number of students to input:"))
+        for n in range(n3):
             Id = input('enter student id:')
             name = input('enter student name:')
             dob = input('enter student dob:')
             p1 = input_students(Id, name, dob)
             p1.add_student()
             print(p1)
-
     if option == 4:
-        n5 = int(input("Input number of course to input:"))
-        for n in range(n5):
+        n4 = int(input("Input number of course to input:"))
+        for n in range(n4):
             Id_course = input('enter course id:')
             name = input('enter course name:')
             p2 = input_courses(Id_course, name)
             p2.add_course()
             print(p2)
-
     if option == 5:
-        n6 = int(input("Input number of mark to input:"))
-        for n in range(n6):
+        n5 = int(input("Input number of mark to input:"))
+        for n in range(n5):
             course_id = input("Enter course ID: ")
             student_id = input("Enter student ID: ")
             mark = input("Enter mark: ")
-
+            input_marks(course_id, student_id, mark)
 
     if option == 6:
         print_student_list()
-
     if option == 7:
         print_course_list()
     if option == 8:
-        list_cr_marks()
+        course_id2 = input("Input Course you want to show students mark: ")
+        list_cr_marks(course_id2)
     else:
         print("Please enter a number from 1 to 8!")
