@@ -19,7 +19,6 @@ class input_students:
 
 student_id_list = []
 course_id_list = []
-mark_course = []
 marks1 = []
 marks2 = {}
 course2 = {}
@@ -76,10 +75,8 @@ def input_marks(course_id_1, student_id_1, marks):
             for student in student_id_list:
                 if student_id_1 == student:
                     marks_2 = {'Course Id': course_id_1, 'Student Id': student_id_1, 'Mark': marks}
-                    mark_course.append(marks_2['Course Id'])
                     marks1.append(marks_2)
                     print(marks1)
-                    print(mark_course)
                     print("Mark added successfully!")
                     return
         #         else:
@@ -90,19 +87,10 @@ def input_marks(course_id_1, student_id_1, marks):
         #     return
 
 
-def list_cr_marks(course_id_2):
-    for course in mark_course:
-        if course_id_2 == course:
-            print(f"Marks for course {course_id_2}:")
-            print(marks1)
-
-            return
-    #     else:
-    #         print("Wrong ID, Please try again.")
-    #         return
-    # else:
-    #     print("Wrong ID, Please try again.")
-    #     return
+def search(Course_id2):
+    for p in marks1:
+        if p['Course Id'] == Course_id2:
+            print(p)
 
 
 while True:
@@ -147,7 +135,7 @@ while True:
     if option == 7:
         print_course_list()
     if option == 8:
-        course_id2 = input("Input Course you want to show students mark: ")
-        list_cr_marks(course_id2)
+        course_id2 = str(input("Input Course you want to show students mark: "))
+        search(course_id2)
     else:
         print("Please enter a number from 1 to 8!")
